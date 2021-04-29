@@ -54,7 +54,10 @@ int parse_fst_val(std::string &line){
     if(ind==std::string::npos){
         throw std::runtime_error("wrong line. cant parse num of row. line: "+line);
     }
-
+    auto stringres=line.substr(0,ind);
+    if(!is_digits(stringres)){
+        throw std::runtime_error("wrong line. cant parse num of row. its not a num. line: "+line);
+    }
     int result=stod(line.substr(0,ind));
     line=line.substr(ind,line.size());
     return result;
